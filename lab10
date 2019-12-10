@@ -1,0 +1,67 @@
+#include <iostream>
+#include <Windows.h>
+#include <string>
+#include <string.h>
+
+using namespace std;
+
+struct strc
+{
+	string name;
+	float averageBal;
+	
+};
+
+int main()
+{
+	
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
+	strc student[100];
+
+	int num;
+	float avgBal;
+	cout << "Введите количество студентов: ";
+	cin >> num;
+
+	for (int i = 0; i < num; i++) {
+
+		cout << "Введите Фамилию студента: " << endl;
+		cin >> student[i].name;
+		cout << "Введите бал студента: " << endl;
+		cin >> student[i].averageBal;
+
+	}
+	cout << "Введите средний бал студента: " << endl;
+	cin >> avgBal;
+
+	float temp;
+	string tempName;
+
+	for (int i = 0; i < num - 1; i++) {
+		for (int j = i + 1; j < num; j++) {
+			if (student[i].averageBal < student[j].averageBal)
+			{
+				temp = student[i].averageBal;
+				student[i].averageBal = student[j].averageBal;
+				student[j].averageBal = temp;
+				
+				tempName = student[i].name;
+				student[i].name = student[j].name;
+				student[j].name = tempName;
+			}
+		}
+	}
+
+	for (int i = 0; i < num; i++) {
+		if (avgBal <= student[i].averageBal) {
+
+			cout << "Студент: " << student[i].name << endl;
+
+			cout << "Бал студента: " << student[i].averageBal << endl;
+
+		}
+	}
+   
+}
